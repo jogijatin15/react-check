@@ -29,8 +29,6 @@ class App extends Component {
         Authorization: 'Client-ID e787ed18a7837c4aff0a5d75c9495c8d6ed977e46048f2b9a5015132afbd4b11'
       }
     });
-
-    console.log("DATA", response.data.results);
     this.setState({
       photos: response.data.results
     });
@@ -58,7 +56,6 @@ class App extends Component {
                 (
                   <img src="https://loading.io/spinners/spinner/lg.ajax-spinner-preloader.gif" />
                 )
-
               }
             </div>
           </div>

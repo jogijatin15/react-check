@@ -1,16 +1,27 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const nodeExternals = require('webpack-node-externals');
 
-module.exports = {
+const common = {
   devtool: 'cheap-module-source-map',
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
       { test: /\.css$/i, use: ['style-loader', 'css-loader'] }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html'
-    })
-  ]
+  }
 }
+
+module.exports = [
+  {
+    ...common,
+    entry: './src/client',
+    output: {
+      path: `${__dirname}/public`
+    }
+  },
+  {
+    ...common,
+    target: 'node',
+    entry: './src/server',
+    externals: [nodeExternals()]
+  }
+]
